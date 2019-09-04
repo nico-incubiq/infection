@@ -114,6 +114,9 @@ final class InfectionContainer extends Container
                     XMLLineCodeCoverage::PHP_SPEC_COVERAGE_DIR
                 );
             },
+            'coverage.dir.codeception' => static function (self $container) {
+                return sprintf('%s/%s', $container['coverage.path'], XMLLineCodeCoverage::CODECEPTION_COVERAGE_DIR);
+            },
             'phpunit.junit.file.path' => static function (self $container) {
                 return sprintf(
                     '%s/%s',
@@ -144,7 +147,8 @@ final class InfectionContainer extends Container
                     $container['xml.configuration.helper'],
                     $container['phpunit.junit.file.path'],
                     $container[Configuration::class],
-                    $container[VersionParser::class]
+                    $container[VersionParser::class],
+                    $container['filesystem']
                 );
             },
             'xml.configuration.helper' => static function (self $container): XmlConfigurationHelper {
